@@ -1,0 +1,16 @@
+table, td, th{
+    font-family: "American Typewriter";
+    border-style: solid;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+#submitFinalInfo{
+    margin:auto;
+    display:block;
+}
+
+#submitCurrentInfo{
+    margin:auto;
+    display:block;
+}
