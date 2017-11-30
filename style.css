@@ -3,14 +3,38 @@ table, td, th{
     border-style: solid;
     border-collapse: collapse;
     text-align: left;
+    padding: 15px;
 }
 
-#submitFinalInfo{
-    margin:auto;
-    display:block;
+#homework{
+    background-color: transparent;
 }
 
+#quizzes{
+    background-color: transparent;
+}
+
+#tests{
+    background-color: transparent;
+}
+
+#midterm{
+    background-color: transparent;
+}
 #submitCurrentInfo{
     margin:auto;
     display:block;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: limegreen;
+    position: relative;
+    top: 15px;
+}
+
+#calculateCurrentGrade{
+    margin:auto;
+    display:block;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: limegreen;
 }
