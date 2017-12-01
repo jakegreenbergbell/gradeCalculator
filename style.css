@@ -6,6 +6,13 @@ table, td, th{
     padding: 15px;
 }
 
+#fixData, #fixData2 {
+    display:none;
+    margin:auto;
+    padding-bottom: 30px;
+    position: relative;
+    top: 15px;}
+
 #homework{
     background-color: transparent;
 }
@@ -21,7 +28,8 @@ table, td, th{
 #midterm{
     background-color: transparent;
 }
-#submitCurrentInfo{
+
+#calculateFinalGrade{
     margin:auto;
     display:block;
     padding-top: 30px;
