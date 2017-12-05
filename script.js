@@ -4,10 +4,7 @@
 //3. avgs all values in array
 //4. calculate current grade using avgs and weights
 
-function setUpVars(){
-    letterArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
-        "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-}
+
 
 function calculateCurrentGrade(){
     var homeworkGrades = document.getElementById("homeworkGrades").value;
@@ -44,44 +41,66 @@ function calculateCurrentGrade(){
 
     }
 
-    weightSoFar = hwWeight/100 + quizWeight/100 + testWeight/100 + midtermWeight/100;
-    var homework = homeworkGradesAvg * (hwWeight/100);
-    var quiz = quizGradesAvg * (quizWeight/100);
-    var test = testGradesAvg* (testWeight/100);
-    var midterm = midtermGradesAvg * (midtermWeight/100);
-    var classGrade = (homework + quiz + test + midterm) / weightSoFar;
-    classGrade = classGrade.toFixed(3);
-    classGrade = printResult(classGrade);
-    return classGrade;
+    var weightSoFar = hwWeight/100 + quizWeight/100 + testWeight/100 + midtermWeight/100;
+    if(validateWeight(weightSoFar)) {
+        var homework = homeworkGradesAvg * (hwWeight / 100);
+        var quiz = quizGradesAvg * (quizWeight / 100);
+        var test = testGradesAvg * (testWeight / 100);
+        var midterm = midtermGradesAvg * (midtermWeight / 100);
+        var classGrade = (homework + quiz + test + midterm) / weightSoFar;
+        classGrade = classGrade.toFixed(3);
+        classGrade = printResult(classGrade);
+        return [classGrade,weightSoFar];
+    }
+}
 
+function validateWeight(weight){
+    if(weight >= 1 || weight<=0){
+        document.getElementById("classGrade").innerHTML = "WEIGHT OF CATEGORIES MUST BE LESS THEN 100% and GREATER THEN 0%";
+        document.getElementById("finalGradeNeeded").innerHTML = "";
+        return false;
+    } else {
+        return true;
+    }
 }
 
 function printResult(grade){
     if(isNaN(grade)){
         document.getElementById("fixData").style.display = "block";
         document.getElementById("classGrade").innerHTML = "";
+        document.getElementById("finalGradeNeeded").innerHTML = "";
 
     }else {
         document.getElementById("classGrade").innerHTML = grade + "%";
         document.getElementById("fixData").style.display = "none";
+        document.getElementById("finalGradeNeeded").innerHTML = "";
     }
     return grade;
     console.log(grade);
 }
+
 function calculateFinalGrade(){
     var finalGradeWanted = (document.getElementById("classGradeWanted").value) / 100;
-    var classGrade = calculateCurrentGrade()/100;
+    var classGrade = calculateCurrentGrade()[0]/100;
+    var weightSoFar = calculateCurrentGrade()[1];
     var finalWeight = 1.00 - weightSoFar;
     var gradeNeeded = ((finalGradeWanted - classGrade * weightSoFar) / finalWeight) * 100;
     gradeNeeded = gradeNeeded.toFixed(2);
     console.log(gradeNeeded);
-    if(isNaN(gradeNeeded)){
-        document.getElementById("fixData2").style.display = "block";
-        document.getElementById("finalGradeNeeded").innerHTML = "";
+    if(validateWeight(weightSoFar)) {
+        if (isNaN(gradeNeeded) || finalGradeWanted <=0) {
+            document.getElementById("fixData2").style.display = "block";
+            document.getElementById("finalGradeNeeded").innerHTML = "";
 
-    }else {
-        document.getElementById("finalGradeNeeded").innerHTML = gradeNeeded + "%";
-        document.getElementById("fixData2").style.display = "none";
+        } else {
+            if (gradeNeeded <= 0) {
+                document.getElementById("finalGradeNeeded").innerHTML = "YOU WILL RECEIVE AN A NO MATTER YOUR RESULT ON THE FINAL";
+                document.getElementById("fixData2").style.display = "none";
+            } else {
+                document.getElementById("finalGradeNeeded").innerHTML = gradeNeeded + "%";
+                document.getElementById("fixData2").style.display = "none";
+            }
+        }
     }
 }
 function gradesToArray(grades){

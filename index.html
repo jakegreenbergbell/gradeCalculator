@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 </head>
-<body onload="setUpVars()"><center>
+<body><center>
     <h1>Calculate Final Grade Necessary</h1>
     <table>
         <tr>
@@ -20,23 +20,23 @@
         <tr id="homework">
             <td>Homework</td>
             <th><input type="text" value="80, 40, 70, 50" id="homeworkGrades"></th>
-            <th><input type="number" value="10" id="homeworkGradeWeight"></th>
+            <th><input type="number" onkeypress="return event.charCode >= 48" min="0" value="10" id="homeworkGradeWeight"></th>
 
         </tr>
         <tr id="quizzes">
             <td>Quizzes</td>
             <th><input type="text" value="80, 95, 70, 75" id="quizGrade"></th>
-            <th><input type="number" value="20" id="quizGradeWeight"></th>
+            <th><input type="number" onkeypress="return event.charCode >= 48" min="0" value="20" id="quizGradeWeight"></th>
         </tr>
         <tr id="tests">
             <td>Tests</td>
             <th><input type="text" value="20, 82, 86, 100" id="testGrade"></th>
-            <th><input type="number" value="30" id="testGradeWeight"></th>
+            <th><input type="number" onkeypress="return event.charCode >= 48" min="0" value="30" id="testGradeWeight"></th>
         </tr>
         <tr id="midterm">
             <td>Midterm</td>
             <th><input type="text" value="93" id="midtermGrade"></th>
-            <th><input type="number" value="30" id="midtermGradeWeight"></th>
+            <th><input type="number" onkeypress="return event.charCode >= 48" min="0" value="30" id="midtermGradeWeight"></th>
         </tr>
             <td colspan="4"><center><button id="calculateCurrentGrade" onclick="calculateCurrentGrade()"> Calculate Current Grade </button></center></td>
 
@@ -49,10 +49,10 @@
     <div id="classGrade"></div>
     <p></p>
 
-    Grade in Class Wanted (%): <input type="number" id="classGradeWanted" value="90">
+    Grade in Class Wanted (%): <input type="number" min="0" id="classGradeWanted" value="90">
 
     <button id="calculateFinalGrade" onclick="calculateFinalGrade()">Calculate Final Exam Grade Needed</button>
     <div id="finalGradeNeeded"></div>
-    <div id="fixData2">PLEASE ENTER ONLY NUMBERS IN GRADES!</div>
+    <div id="fixData2">PLEASE ENTER ONLY NUMBERS IN GRADES and GRADE WANTED MORE THAN 0!</div>
 </body></center>
 </html>
